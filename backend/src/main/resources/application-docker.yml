@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/${POSTGRES_DB:chatbot}
+    username: ${POSTGRES_USER:chatbot}
+    password: ${POSTGRES_PASSWORD:chatbot}

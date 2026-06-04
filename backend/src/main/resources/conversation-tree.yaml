@@ -1,0 +1,281 @@
+nodes:
+  - id: language-select
+    message:
+      en: "Welcome to the UDESC Chatbot! 🎓\nI'm here to help foreign exchange students navigate university life.\nPlease select your language:"
+      pt: "Bem-vindo ao Chatbot da UDESC! 🎓\nEstou aqui para ajudar estudantes estrangeiros a navegar na universidade.\nPor favor, selecione seu idioma:"
+      es: "¡Bienvenido al Chatbot de UDESC! 🎓\nEstoy aquí para ayudar a los estudiantes de intercambio a conocer la universidad.\nPor favor, selecciona tu idioma:"
+    options:
+      - label: { en: "🇺🇸 English", pt: "🇺🇸 English", es: "🇺🇸 English" }
+        nextNodeId: menu-main
+        languageCode: en
+      - label: { en: "🇧🇷 Português", pt: "🇧🇷 Português", es: "🇧🇷 Português" }
+        nextNodeId: menu-main
+        languageCode: pt
+      - label: { en: "🇪🇸 Español", pt: "🇪🇸 Español", es: "🇪🇸 Español" }
+        nextNodeId: menu-main
+        languageCode: es
+
+  - id: menu-main
+    message:
+      en: "Main Menu — How can I help you today?"
+      pt: "Menu Principal — Como posso te ajudar hoje?"
+      es: "Menú Principal — ¿En qué puedo ayudarte hoy?"
+    options:
+      - label: { en: "🏛️ Campus Addresses", pt: "🏛️ Endereço dos Centros", es: "🏛️ Direcciones de los Campus" }
+        nextNodeId: menu-centers
+      - label: { en: "💻 UDESC Systems Access", pt: "💻 Acesso aos Sistemas UDESC", es: "💻 Acceso a Sistemas UDESC" }
+        nextNodeId: menu-systems-access
+      - label: { en: "🪪 How to Get Your UDESC ID", pt: "🪪 Como Obter o ID UDESC", es: "🪪 Cómo Obtener el ID UDESC" }
+        nextNodeId: leaf-udesc-id
+      - label: { en: "🖥️ UDESC Systems Description", pt: "🖥️ Descrição dos Sistemas UDESC", es: "🖥️ Descripción de los Sistemas" }
+        nextNodeId: menu-systems-desc
+      - label: { en: "📋 CPF Information", pt: "📋 Informações sobre CPF", es: "📋 Información sobre CPF" }
+        nextNodeId: leaf-cpf
+      - label: { en: "🤝 Tutoring Team", pt: "🤝 Equipe de Tutoria", es: "🤝 Equipo de Tutoría" }
+        nextNodeId: leaf-tutoring
+      - label: { en: "🧭 Student Orientation Service (SOE)", pt: "🧭 Serviço de Orientação ao Estudante (SOE)", es: "🧭 Servicio de Orientación al Estudiante (SOE)" }
+        nextNodeId: leaf-soe
+      - label: { en: "🏠 Student Housing", pt: "🏠 Residência Estudantil", es: "🏠 Residencia Estudiantil" }
+        nextNodeId: leaf-housing
+      - label: { en: "🔄 Start Over / Change Language", pt: "🔄 Recomeçar / Trocar Idioma", es: "🔄 Empezar de Nuevo / Cambiar Idioma" }
+        nextNodeId: language-select
+
+  # ─── MENU 1: Campus Addresses ────────────────────────────────────────────────
+
+  - id: menu-centers
+    backNodeId: menu-main
+    message:
+      en: "Which UDESC campus are you looking for?"
+      pt: "Qual campus da UDESC você está procurando?"
+      es: "¿Qué campus de UDESC estás buscando?"
+    options:
+      - label: { en: "CCT — Joinville (Technology)", pt: "CCT — Joinville (Tecnologia)", es: "CCT — Joinville (Tecnología)" }
+        nextNodeId: leaf-center-cct
+      - label: { en: "FAED — Florianópolis (Education)", pt: "FAED — Florianópolis (Educação)", es: "FAED — Florianópolis (Educación)" }
+        nextNodeId: leaf-center-faed
+      - label: { en: "CEFID — Florianópolis (Sports)", pt: "CEFID — Florianópolis (Esportes)", es: "CEFID — Florianópolis (Deportes)" }
+        nextNodeId: leaf-center-cefid
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-main
+
+  - id: leaf-center-cct
+    backNodeId: menu-centers
+    message:
+      en: "🏛️ CCT — Centro de Ciências Tecnológicas\n📍 Address: Rua Paulo Malschitzki, 200 – Zona Industrial Norte, Joinville – SC, 89219-710\n🌐 Website: https://www.udesc.br/cct\n📞 Phone: (47) 3481-7600"
+      pt: "🏛️ CCT — Centro de Ciências Tecnológicas\n📍 Endereço: Rua Paulo Malschitzki, 200 – Zona Industrial Norte, Joinville – SC, 89219-710\n🌐 Site: https://www.udesc.br/cct\n📞 Telefone: (47) 3481-7600"
+      es: "🏛️ CCT — Centro de Ciências Tecnológicas\n📍 Dirección: Rua Paulo Malschitzki, 200 – Zona Industrial Norte, Joinville – SC, 89219-710\n🌐 Sitio web: https://www.udesc.br/cct\n📞 Teléfono: (47) 3481-7600"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-centers
+
+  - id: leaf-center-faed
+    backNodeId: menu-centers
+    message:
+      en: "🏛️ FAED — Centro de Ciências Humanas e da Educação\n📍 Address: Av. Madre Benvenuta, 2007 – Itacorubi, Florianópolis – SC, 88035-901\n🌐 Website: https://www.udesc.br/faed\n📞 Phone: (48) 3664-8222"
+      pt: "🏛️ FAED — Centro de Ciências Humanas e da Educação\n📍 Endereço: Av. Madre Benvenuta, 2007 – Itacorubi, Florianópolis – SC, 88035-901\n🌐 Site: https://www.udesc.br/faed\n📞 Telefone: (48) 3664-8222"
+      es: "🏛️ FAED — Centro de Ciências Humanas e da Educação\n📍 Dirección: Av. Madre Benvenuta, 2007 – Itacorubi, Florianópolis – SC, 88035-901\n🌐 Sitio web: https://www.udesc.br/faed\n📞 Teléfono: (48) 3664-8222"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-centers
+
+  - id: leaf-center-cefid
+    backNodeId: menu-centers
+    message:
+      en: "🏛️ CEFID — Centro de Ciências da Saúde e do Esporte\n📍 Address: Rua Pascoal Simone, 358 – Coqueiros, Florianópolis – SC, 88080-350\n🌐 Website: https://www.udesc.br/cefid\n📞 Phone: (48) 3664-8600"
+      pt: "🏛️ CEFID — Centro de Ciências da Saúde e do Esporte\n📍 Endereço: Rua Pascoal Simone, 358 – Coqueiros, Florianópolis – SC, 88080-350\n🌐 Site: https://www.udesc.br/cefid\n📞 Telefone: (48) 3664-8600"
+      es: "🏛️ CEFID — Centro de Ciências da Saúde e do Esporte\n📍 Dirección: Rua Pascoal Simone, 358 – Coqueiros, Florianópolis – SC, 88080-350\n🌐 Sitio web: https://www.udesc.br/cefid\n📞 Teléfono: (48) 3664-8600"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-centers
+
+  # ─── MENU 2: Systems Access ──────────────────────────────────────────────────
+
+  - id: menu-systems-access
+    backNodeId: menu-main
+    message:
+      en: "Which UDESC system do you need access to?"
+      pt: "Qual sistema da UDESC você precisa acessar?"
+      es: "¿A qué sistema de UDESC necesitas acceder?"
+    options:
+      - label: { en: "SIGA", pt: "SIGA", es: "SIGA" }
+        nextNodeId: leaf-access-siga
+      - label: { en: "Moodle", pt: "Moodle", es: "Moodle" }
+        nextNodeId: leaf-access-moodle
+      - label: { en: "SIGAA", pt: "SIGAA", es: "SIGAA" }
+        nextNodeId: leaf-access-sigaa
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-main
+
+  - id: leaf-access-siga
+    backNodeId: menu-systems-access
+    message:
+      en: "💻 SIGA — Academic Management System\n🔗 Access: https://siga.udesc.br\n📋 Requirements:\n• You need your UDESC ID (institutional login)\n• Your ID is in the format: first.last@udesc.br\n• First access: use the temporary password sent to your institutional email\n• If you don't have your UDESC ID yet, see menu option 3."
+      pt: "💻 SIGA — Sistema Integrado de Gestão Acadêmica\n🔗 Acesso: https://siga.udesc.br\n📋 Requisitos:\n• Você precisa do seu ID UDESC (login institucional)\n• Seu ID está no formato: nome.sobrenome@udesc.br\n• Primeiro acesso: use a senha temporária enviada ao seu e-mail institucional\n• Se ainda não tem o ID UDESC, consulte a opção 3 do menu."
+      es: "💻 SIGA — Sistema Integrado de Gestión Académica\n🔗 Acceso: https://siga.udesc.br\n📋 Requisitos:\n• Necesitas tu ID UDESC (inicio de sesión institucional)\n• Tu ID tiene el formato: nombre.apellido@udesc.br\n• Primer acceso: usa la contraseña temporal enviada a tu correo institucional\n• Si aún no tienes el ID UDESC, consulta la opción 3 del menú."
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-access
+
+  - id: leaf-access-moodle
+    backNodeId: menu-systems-access
+    message:
+      en: "💻 Moodle — Distance Learning Platform\n🔗 Access: https://moodle.udesc.br\n📋 Requirements:\n• Login with your UDESC ID (same as SIGA)\n• Your professors will enroll you in courses\n• Check your institutional email for Moodle notifications\n• If you don't have your UDESC ID yet, see menu option 3."
+      pt: "💻 Moodle — Ambiente Virtual de Aprendizagem\n🔗 Acesso: https://moodle.udesc.br\n📋 Requisitos:\n• Login com o ID UDESC (mesmo do SIGA)\n• Os professores farão sua inscrição nas disciplinas\n• Verifique seu e-mail institucional para notificações do Moodle\n• Se ainda não tem o ID UDESC, consulte a opção 3 do menu."
+      es: "💻 Moodle — Plataforma de Aprendizaje Virtual\n🔗 Acceso: https://moodle.udesc.br\n📋 Requisitos:\n• Inicia sesión con tu ID UDESC (igual que en SIGA)\n• Los profesores te inscribirán en las asignaturas\n• Revisa tu correo institucional para notificaciones de Moodle\n• Si aún no tienes el ID UDESC, consulta la opción 3 del menú."
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-access
+
+  - id: leaf-access-sigaa
+    backNodeId: menu-systems-access
+    message:
+      en: "💻 SIGAA — Academic System (Postgraduate)\n🔗 Access: https://sigaa.udesc.br\n📋 Requirements:\n• Login with your UDESC ID (institutional login)\n• Used mainly for postgraduate programs\n• Contact your program coordinator if you have access issues\n• If you don't have your UDESC ID yet, see menu option 3."
+      pt: "💻 SIGAA — Sistema de Informações para o Ensino (Pós-graduação)\n🔗 Acesso: https://sigaa.udesc.br\n📋 Requisitos:\n• Login com o ID UDESC (login institucional)\n• Utilizado principalmente para programas de pós-graduação\n• Entre em contato com o coordenador do programa se tiver problemas de acesso\n• Se ainda não tem o ID UDESC, consulte a opção 3 do menu."
+      es: "💻 SIGAA — Sistema de Información Académica (Posgrado)\n🔗 Acceso: https://sigaa.udesc.br\n📋 Requisitos:\n• Inicia sesión con tu ID UDESC (inicio de sesión institucional)\n• Utilizado principalmente para programas de posgrado\n• Contacta al coordinador de tu programa si tienes problemas de acceso\n• Si aún no tienes el ID UDESC, consulta la opción 3 del menú."
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-access
+
+  # ─── MENU 3: UDESC ID ─────────────────────────────────────────────────────────
+
+  - id: leaf-udesc-id
+    backNodeId: menu-main
+    message:
+      en: "🪪 How to Get Your UDESC Institutional ID\n\n1️⃣ After enrollment, go to the IT support at your campus (CCT: Bloco A, room 002)\n2️⃣ Bring your student registration number (RA) and a photo ID\n3️⃣ IT staff will create your account: nome.sobrenome@udesc.br\n4️⃣ A temporary password will be sent to your personal email\n5️⃣ Log in at https://id.udesc.br and change your password\n6️⃣ Use this ID to access SIGA, Moodle, Office 365, and other UDESC systems\n\n⚠️ If you have issues, contact: suporte.cct@udesc.br | (47) 3481-7600"
+      pt: "🪪 Como Obter o ID Institucional UDESC\n\n1️⃣ Após a matrícula, vá ao suporte de TI do seu campus (CCT: Bloco A, sala 002)\n2️⃣ Leve o seu número de matrícula (RA) e um documento de identidade com foto\n3️⃣ A equipe de TI criará sua conta: nome.sobrenome@udesc.br\n4️⃣ Uma senha temporária será enviada ao seu e-mail pessoal\n5️⃣ Faça login em https://id.udesc.br e altere sua senha\n6️⃣ Use este ID para acessar SIGA, Moodle, Office 365 e outros sistemas UDESC\n\n⚠️ Em caso de problemas, contate: suporte.cct@udesc.br | (47) 3481-7600"
+      es: "🪪 Cómo Obtener el ID Institucional de UDESC\n\n1️⃣ Después de la matrícula, ve al soporte de TI de tu campus (CCT: Bloque A, sala 002)\n2️⃣ Lleva tu número de matrícula (RA) y un documento de identidad con foto\n3️⃣ El equipo de TI creará tu cuenta: nombre.apellido@udesc.br\n4️⃣ Una contraseña temporal será enviada a tu correo personal\n5️⃣ Inicia sesión en https://id.udesc.br y cambia tu contraseña\n6️⃣ Usa este ID para acceder a SIGA, Moodle, Office 365 y otros sistemas de UDESC\n\n⚠️ Si tienes problemas, contacta: suporte.cct@udesc.br | (47) 3481-7600"
+    options:
+      - label: { en: "⬅️ Back to Main Menu", pt: "⬅️ Voltar ao Menu Principal", es: "⬅️ Volver al Menú Principal" }
+        nextNodeId: menu-main
+
+  # ─── MENU 4: Systems Description ─────────────────────────────────────────────
+
+  - id: menu-systems-desc
+    backNodeId: menu-main
+    message:
+      en: "Which UDESC system would you like to know more about?"
+      pt: "Sobre qual sistema da UDESC você quer saber mais?"
+      es: "¿Sobre qué sistema de UDESC quieres saber más?"
+    options:
+      - label: { en: "SIGA (Grades & Absences)", pt: "SIGA (Notas e Faltas)", es: "SIGA (Notas y Faltas)" }
+        nextNodeId: leaf-desc-siga
+      - label: { en: "Moodle (Courses & Assignments)", pt: "Moodle (Disciplinas e Exercícios)", es: "Moodle (Materias y Tareas)" }
+        nextNodeId: leaf-desc-moodle
+      - label: { en: "UDESC Website (PPC & Professors)", pt: "Site UDESC (PPC e Professores)", es: "Sitio UDESC (PPC y Profesores)" }
+        nextNodeId: leaf-desc-site
+      - label: { en: "SAS (Room Scheduling)", pt: "SAS (Agendamento de Salas)", es: "SAS (Reserva de Salas)" }
+        nextNodeId: leaf-desc-sas
+      - label: { en: "Office 365 (Email & Apps)", pt: "Office 365 (E-mail e Aplicativos)", es: "Office 365 (Correo y Aplicaciones)" }
+        nextNodeId: leaf-desc-office
+      - label: { en: "Online Library", pt: "Biblioteca Online", es: "Biblioteca en Línea" }
+        nextNodeId: leaf-desc-library
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-main
+
+  - id: leaf-desc-siga
+    backNodeId: menu-systems-desc
+    message:
+      en: "🎓 SIGA — Academic Management System\n📊 What it's for:\n• View your grades for all disciplines\n• Check your absences and attendance records\n• See your academic history\n• Access your class schedule\n• Download your enrollment certificate\n🔗 https://siga.udesc.br"
+      pt: "🎓 SIGA — Sistema Integrado de Gestão Acadêmica\n📊 Para que serve:\n• Visualizar suas notas em todas as disciplinas\n• Verificar suas faltas e registro de presença\n• Consultar seu histórico acadêmico\n• Acessar seu horário de aulas\n• Baixar seu comprovante de matrícula\n🔗 https://siga.udesc.br"
+      es: "🎓 SIGA — Sistema Integrado de Gestión Académica\n📊 Para qué sirve:\n• Ver tus calificaciones en todas las materias\n• Revisar tus faltas y registro de asistencia\n• Consultar tu historial académico\n• Ver tu horario de clases\n• Descargar tu comprobante de matrícula\n🔗 https://siga.udesc.br"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-desc
+
+  - id: leaf-desc-moodle
+    backNodeId: menu-systems-desc
+    message:
+      en: "📚 Moodle — Virtual Learning Environment\n📖 What it's for:\n• Access course materials (slides, readings, videos)\n• Submit assignments and exercises\n• Take online quizzes and exams\n• Communicate with professors and classmates via forums\n• Track deadlines for all your disciplines\n🔗 https://moodle.udesc.br"
+      pt: "📚 Moodle — Ambiente Virtual de Aprendizagem\n📖 Para que serve:\n• Acessar materiais das disciplinas (slides, leituras, vídeos)\n• Entregar trabalhos e exercícios\n• Fazer questionários e provas online\n• Comunicar-se com professores e colegas via fóruns\n• Acompanhar prazos de todas as disciplinas\n🔗 https://moodle.udesc.br"
+      es: "📚 Moodle — Entorno Virtual de Aprendizaje\n📖 Para qué sirve:\n• Acceder a materiales de las materias (diapositivas, lecturas, videos)\n• Entregar trabajos y ejercicios\n• Hacer cuestionarios y exámenes online\n• Comunicarte con profesores y compañeros mediante foros\n• Seguir los plazos de todas tus materias\n🔗 https://moodle.udesc.br"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-desc
+
+  - id: leaf-desc-site
+    backNodeId: menu-systems-desc
+    message:
+      en: "🌐 UDESC Website\n📋 What you'll find:\n• Course curriculum (PPC — Projeto Pedagógico do Curso)\n• Professor directory and office hours\n• Department news and events\n• Internship and research opportunities\n• Links to all UDESC campuses\n🔗 https://www.udesc.br/cct"
+      pt: "🌐 Site UDESC\n📋 O que você encontrará:\n• Currículo do curso (PPC — Projeto Pedagógico do Curso)\n• Diretório de professores e horários de atendimento\n• Notícias e eventos do departamento\n• Oportunidades de estágio e pesquisa\n• Links para todos os campi da UDESC\n🔗 https://www.udesc.br/cct"
+      es: "🌐 Sitio Web de UDESC\n📋 Lo que encontrarás:\n• Plan de estudios (PPC — Projeto Pedagógico do Curso)\n• Directorio de profesores y horarios de atención\n• Noticias y eventos del departamento\n• Oportunidades de prácticas e investigación\n• Enlace a todos los campus de UDESC\n🔗 https://www.udesc.br/cct"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-desc
+
+  - id: leaf-desc-sas
+    backNodeId: menu-systems-desc
+    message:
+      en: "🏫 SAS — Room Scheduling System\n🗓️ What it's for:\n• Book classrooms, labs, and meeting rooms\n• Check room availability by date and time\n• View existing room bookings\n• Cancel or modify your reservations\n🔗 Access via UDESC intranet (requires UDESC ID)"
+      pt: "🏫 SAS — Sistema de Agendamento de Salas\n🗓️ Para que serve:\n• Reservar salas de aula, laboratórios e salas de reunião\n• Verificar disponibilidade de salas por data e horário\n• Visualizar reservas de salas existentes\n• Cancelar ou modificar suas reservas\n🔗 Acesso pela intranet da UDESC (requer ID UDESC)"
+      es: "🏫 SAS — Sistema de Reserva de Salas\n🗓️ Para qué sirve:\n• Reservar aulas, laboratorios y salas de reuniones\n• Verificar disponibilidad de salas por fecha y hora\n• Ver reservas de salas existentes\n• Cancelar o modificar tus reservas\n🔗 Acceso por la intranet de UDESC (requiere ID UDESC)"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-desc
+
+  - id: leaf-desc-office
+    backNodeId: menu-systems-desc
+    message:
+      en: "📧 Office 365 — Microsoft Suite\n💼 What's included:\n• Institutional email: nome.sobrenome@edu.udesc.br\n• Microsoft Word, Excel, PowerPoint (online and desktop)\n• Microsoft Teams for video calls and collaboration\n• OneDrive for cloud storage (1TB)\n• Access: https://office.com — sign in with your UDESC ID"
+      pt: "📧 Office 365 — Suite Microsoft\n💼 O que inclui:\n• E-mail institucional: nome.sobrenome@edu.udesc.br\n• Microsoft Word, Excel, PowerPoint (online e desktop)\n• Microsoft Teams para videochamadas e colaboração\n• OneDrive para armazenamento em nuvem (1TB)\n• Acesso: https://office.com — entre com seu ID UDESC"
+      es: "📧 Office 365 — Suite de Microsoft\n💼 Qué incluye:\n• Correo institucional: nombre.apellido@edu.udesc.br\n• Microsoft Word, Excel, PowerPoint (online y escritorio)\n• Microsoft Teams para videollamadas y colaboración\n• OneDrive para almacenamiento en la nube (1TB)\n• Acceso: https://office.com — inicia sesión con tu ID UDESC"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-desc
+
+  - id: leaf-desc-library
+    backNodeId: menu-systems-desc
+    message:
+      en: "📖 UDESC Online Library\n🔍 What you can do:\n• Search books, journals, and academic articles\n• Access TCC (undergraduate thesis) repository\n• Download dissertations and doctoral theses\n• Access CAPES Periodicals Portal (free for UDESC students)\n• Use Pergamum catalog for physical library books\n🔗 https://www.udesc.br/bibliotecas\n🔗 CAPES: https://www.periodicos.capes.gov.br"
+      pt: "📖 Biblioteca Online da UDESC\n🔍 O que você pode fazer:\n• Pesquisar livros, periódicos e artigos acadêmicos\n• Acessar o repositório de TCCs\n• Baixar dissertações e teses de doutorado\n• Acessar o Portal de Periódicos da CAPES (gratuito para alunos UDESC)\n• Usar o catálogo Pergamum para livros da biblioteca física\n🔗 https://www.udesc.br/bibliotecas\n🔗 CAPES: https://www.periodicos.capes.gov.br"
+      es: "📖 Biblioteca en Línea de UDESC\n🔍 Lo que puedes hacer:\n• Buscar libros, revistas y artículos académicos\n• Acceder al repositorio de TCC (trabajos de grado)\n• Descargar disertaciones y tesis doctorales\n• Acceder al Portal de Periódicos de CAPES (gratuito para estudiantes de UDESC)\n• Usar el catálogo Pergamum para libros de la biblioteca física\n🔗 https://www.udesc.br/bibliotecas\n🔗 CAPES: https://www.periodicos.capes.gov.br"
+    options:
+      - label: { en: "⬅️ Back", pt: "⬅️ Voltar", es: "⬅️ Volver" }
+        nextNodeId: menu-systems-desc
+
+  # ─── MENU 5: CPF Information ─────────────────────────────────────────────────
+
+  - id: leaf-cpf
+    backNodeId: menu-main
+    message:
+      en: "📋 CPF — Individual Taxpayer Registry (Brazil)\n\n🌐 Online Registration:\n1️⃣ Go to: https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/\n2️⃣ Fill in your personal data\n3️⃣ Submit the form online\n\n⚠️ IMPORTANT for foreigners:\nAfter online registration, you MUST appear IN PERSON at the Receita Federal to validate your CPF.\n\n📍 Nearest Receita Federal (CCT — Joinville):\nAv. Getúlio Vargas, 300 – Centro, Joinville – SC\n📞 Call center: 146\n\n💡 Bring: Passport or official ID + proof of address"
+      pt: "📋 CPF — Cadastro de Pessoas Físicas (Brasil)\n\n🌐 Cadastro Online:\n1️⃣ Acesse: https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/\n2️⃣ Preencha seus dados pessoais\n3️⃣ Envie o formulário online\n\n⚠️ IMPORTANTE para estrangeiros:\nApós o cadastro online, você DEVE comparecer PRESENCIALMENTE à Receita Federal para validar o CPF.\n\n📍 Receita Federal mais próxima (CCT — Joinville):\nAv. Getúlio Vargas, 300 – Centro, Joinville – SC\n📞 Central de atendimento: 146\n\n💡 Leve: Passaporte ou documento oficial + comprovante de residência"
+      es: "📋 CPF — Registro de Contribuyentes Individuales (Brasil)\n\n🌐 Registro en Línea:\n1️⃣ Accede a: https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/\n2️⃣ Completa tus datos personales\n3️⃣ Envía el formulario online\n\n⚠️ IMPORTANTE para extranjeros:\nDespués del registro online, DEBES comparecer PRESENCIALMENTE en la Receita Federal para validar tu CPF.\n\n📍 Receita Federal más cercana (CCT — Joinville):\nAv. Getúlio Vargas, 300 – Centro, Joinville – SC\n📞 Central de atención: 146\n\n💡 Lleva: Pasaporte o documento oficial + comprobante de domicilio"
+    options:
+      - label: { en: "⬅️ Back to Main Menu", pt: "⬅️ Voltar ao Menu Principal", es: "⬅️ Volver al Menú Principal" }
+        nextNodeId: menu-main
+
+  # ─── MENU 6: Tutoring Team ────────────────────────────────────────────────────
+
+  - id: leaf-tutoring
+    backNodeId: menu-main
+    message:
+      en: "🤝 CCT Academic Tutoring Team\n\nThe tutoring team helps foreign and exchange students with academic and administrative questions.\n\n📧 Email: tutoria.cct@udesc.br\n🌐 Website: https://www.udesc.br/cct/tutoriaacademica\n👥 Team: https://www.udesc.br/cct/tutoriaacademica/equipe\n📞 Phone: (47) 3481-7600 (ask for Tutoria)\n\n👩‍🏫 Course Supervisors:\n• TADS: Prof. Débora Cabral Nazário\n• Computer Science: Prof. Luciana Rita Guedes\n\n⏰ Office hours: Check the website for current schedule"
+      pt: "🤝 Equipe de Tutoria Acadêmica do CCT\n\nA equipe de tutoria ajuda estudantes estrangeiros e de intercâmbio com dúvidas acadêmicas e administrativas.\n\n📧 E-mail: tutoria.cct@udesc.br\n🌐 Site: https://www.udesc.br/cct/tutoriaacademica\n👥 Equipe: https://www.udesc.br/cct/tutoriaacademica/equipe\n📞 Telefone: (47) 3481-7600 (pedir pela Tutoria)\n\n👩‍🏫 Supervisoras de Curso:\n• TADS: Profa. Débora Cabral Nazário\n• Ciência da Computação: Profa. Luciana Rita Guedes\n\n⏰ Horário de atendimento: Consulte o site para o horário atual"
+      es: "🤝 Equipo de Tutoría Académica del CCT\n\nEl equipo de tutoría ayuda a los estudiantes extranjeros e de intercambio con dudas académicas y administrativas.\n\n📧 Correo: tutoria.cct@udesc.br\n🌐 Sitio web: https://www.udesc.br/cct/tutoriaacademica\n👥 Equipo: https://www.udesc.br/cct/tutoriaacademica/equipe\n📞 Teléfono: (47) 3481-7600 (pedir por Tutoría)\n\n👩‍🏫 Supervisoras de Curso:\n• TADS: Prof. Débora Cabral Nazário\n• Ciencias de la Computación: Prof. Luciana Rita Guedes\n\n⏰ Horario de atención: Consulta el sitio web para el horario actual"
+    options:
+      - label: { en: "⬅️ Back to Main Menu", pt: "⬅️ Voltar ao Menu Principal", es: "⬅️ Volver al Menú Principal" }
+        nextNodeId: menu-main
+
+  # ─── MENU 7: SOE ─────────────────────────────────────────────────────────────
+
+  - id: leaf-soe
+    backNodeId: menu-main
+    message:
+      en: "🧭 SOE — Student Orientation Service\n\nThe SOE provides support services specifically designed for students, including foreign exchange students.\n\n🛠️ Services offered:\n• Psychological support and counseling\n• Academic guidance and study strategies\n• Social integration support for foreign students\n• Assistance with university bureaucracy\n• Financial aid information\n\n⏰ Office hours: Mon–Fri, 8:00–12:00 and 13:30–17:30\n📍 Location: CCT — Administrative Block, room 105\n📞 Phone: (47) 3481-7600 ext. 7620\n📧 Email: soe.cct@udesc.br\n🌐 Website: https://www.udesc.br/cct/soe"
+      pt: "🧭 SOE — Serviço de Orientação ao Estudante\n\nO SOE oferece serviços de apoio especialmente para estudantes, incluindo estudantes estrangeiros de intercâmbio.\n\n🛠️ Serviços oferecidos:\n• Apoio psicológico e aconselhamento\n• Orientação acadêmica e estratégias de estudo\n• Suporte à integração social de estudantes estrangeiros\n• Auxílio com burocracia universitária\n• Informações sobre auxílios financeiros\n\n⏰ Horário de atendimento: Seg–Sex, 8:00–12:00 e 13:30–17:30\n📍 Localização: CCT — Bloco Administrativo, sala 105\n📞 Telefone: (47) 3481-7600 ramal 7620\n📧 E-mail: soe.cct@udesc.br\n🌐 Site: https://www.udesc.br/cct/soe"
+      es: "🧭 SOE — Servicio de Orientación al Estudiante\n\nEl SOE ofrece servicios de apoyo especialmente diseñados para estudiantes, incluidos los de intercambio.\n\n🛠️ Servicios ofrecidos:\n• Apoyo psicológico y orientación\n• Guía académica y estrategias de estudio\n• Apoyo a la integración social de estudiantes extranjeros\n• Asistencia con trámites universitarios\n• Información sobre ayudas financieras\n\n⏰ Horario de atención: Lun–Vie, 8:00–12:00 y 13:30–17:30\n📍 Ubicación: CCT — Bloque Administrativo, sala 105\n📞 Teléfono: (47) 3481-7600 ext. 7620\n📧 Correo: soe.cct@udesc.br\n🌐 Sitio web: https://www.udesc.br/cct/soe"
+    options:
+      - label: { en: "⬅️ Back to Main Menu", pt: "⬅️ Voltar ao Menu Principal", es: "⬅️ Volver al Menú Principal" }
+        nextNodeId: menu-main
+
+  # ─── MENU 8: Student Housing ──────────────────────────────────────────────────
+
+  - id: leaf-housing
+    backNodeId: menu-main
+    message:
+      en: "🏠 Student Housing — CCT Joinville\n\nUDESC CCT does not have an on-campus student dormitory.\n\n🏘️ Alternatives for foreign students:\n• The university has partnerships with local boarding houses near campus\n• Contact the tutoring team for a list of recommended housing options\n• Facebook group: 'Moradia UDESC CCT' for shared housing listings\n• The city of Joinville offers social housing programs for low-income students — contact SOE for details\n\n💡 Tip: Look for housing near the 'Zona Industrial Norte' district for easy access to CCT.\n\n📧 For housing assistance: tutoria.cct@udesc.br"
+      pt: "🏠 Residência Estudantil — CCT Joinville\n\nO CCT da UDESC não possui alojamento estudantil no campus.\n\n🏘️ Alternativas para estudantes estrangeiros:\n• A universidade tem parcerias com repúblicas locais próximas ao campus\n• Entre em contato com a equipe de tutoria para uma lista de opções de moradia recomendadas\n• Grupo do Facebook: 'Moradia UDESC CCT' para anúncios de casas compartilhadas\n• A cidade de Joinville oferece programas de moradia social para estudantes de baixa renda — contate o SOE para detalhes\n\n💡 Dica: Procure moradia perto do bairro 'Zona Industrial Norte' para facilitar o acesso ao CCT.\n\n📧 Para assistência com moradia: tutoria.cct@udesc.br"
+      es: "🏠 Residencia Estudiantil — CCT Joinville\n\nEl CCT de UDESC no tiene dormitorio estudiantil en el campus.\n\n🏘️ Alternativas para estudiantes extranjeros:\n• La universidad tiene convenios con pensiones locales cerca del campus\n• Contacta al equipo de tutoría para una lista de opciones de alojamiento recomendadas\n• Grupo de Facebook: 'Moradia UDESC CCT' para anuncios de vivienda compartida\n• La ciudad de Joinville ofrece programas de vivienda social para estudiantes de bajos recursos — contacta al SOE para detalles\n\n💡 Consejo: Busca alojamiento cerca del barrio 'Zona Industrial Norte' para un fácil acceso al CCT.\n\n📧 Para asistencia con alojamiento: tutoria.cct@udesc.br"
+    options:
+      - label: { en: "⬅️ Back to Main Menu", pt: "⬅️ Voltar ao Menu Principal", es: "⬅️ Volver al Menú Principal" }
+        nextNodeId: menu-main

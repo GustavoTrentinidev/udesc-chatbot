@@ -1,0 +1,221 @@
+{
+  "info": {
+    "name": "UDESC Chatbot API",
+    "description": "Rule-based chatbot for foreign exchange students at UDESC.\n\nUsage:\n1. Run \"Start Session\" first — the sessionId is saved automatically.\n2. Use \"Select Option\" to navigate menus (change optionIndex in the body).\n3. All other requests use the saved sessionId automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "sessionId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/actuator/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["actuator", "health"]
+        },
+        "description": "Verifies the server and database are up. Expect {\"status\": \"UP\"}."
+      },
+      "response": [
+        {
+          "name": "Healthy",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n    \"status\": \"UP\",\n    \"components\": {\n        \"db\": { \"status\": \"UP\" },\n        \"ping\": { \"status\": \"UP\" }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Start Session",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var json = pm.response.json();",
+              "pm.collectionVariables.set('sessionId', json.sessionId);",
+              "console.log('Session started:', json.sessionId);",
+              "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+              "pm.test('nodeId is language-select', () => pm.expect(json.nodeId).to.eql('language-select'));",
+              "pm.test('3 language options returned', () => pm.expect(json.options.length).to.eql(3));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/sessions",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "sessions"]
+        },
+        "description": "Creates a new chat session. Automatically saves the sessionId to the collection variable for use in subsequent requests.\n\nThe first node is always 'language-select' with 3 options:\n- 0: English\n- 1: Português\n- 2: Español"
+      },
+      "response": [
+        {
+          "name": "Session Created",
+          "status": "Created",
+          "code": 201,
+          "body": "{\n    \"sessionId\": \"c9d8c798-8532-4dc8-bf17-b6fb3209175b\",\n    \"nodeId\": \"language-select\",\n    \"message\": \"Welcome to the UDESC Chatbot! 🎓\\nPlease select your language:\",\n    \"options\": [\n        { \"index\": 0, \"label\": \"🇺🇸 English\" },\n        { \"index\": 1, \"label\": \"🇧🇷 Português\" },\n        { \"index\": 2, \"label\": \"🇪🇸 Español\" }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Session State",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/sessions/{{sessionId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "sessions", "{{sessionId}}"]
+        },
+        "description": "Returns the current node, message and available options for the session.\n\nUses the sessionId saved by 'Start Session'."
+      },
+      "response": [
+        {
+          "name": "Session Found",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n    \"sessionId\": \"c9d8c798-8532-4dc8-bf17-b6fb3209175b\",\n    \"nodeId\": \"menu-main\",\n    \"message\": \"Main Menu — How can I help you today?\",\n    \"options\": [\n        { \"index\": 0, \"label\": \"🏛️ Campus Addresses\" },\n        { \"index\": 1, \"label\": \"💻 UDESC Systems Access\" },\n        { \"index\": 2, \"label\": \"🪪 How to Get Your UDESC ID\" },\n        { \"index\": 3, \"label\": \"🖥️ UDESC Systems Description\" },\n        { \"index\": 4, \"label\": \"📋 CPF Information\" },\n        { \"index\": 5, \"label\": \"🤝 Tutoring Team\" },\n        { \"index\": 6, \"label\": \"🧭 Student Orientation Service (SOE)\" },\n        { \"index\": 7, \"label\": \"🏠 Student Housing\" },\n        { \"index\": 8, \"label\": \"🔄 Start Over / Change Language\" }\n    ]\n}"
+        },
+        {
+          "name": "Session Not Found",
+          "status": "Not Found",
+          "code": 404,
+          "body": "{\n    \"error\": \"Session not found: 00000000-0000-0000-0000-000000000000\",\n    \"timestamp\": \"2026-06-04T12:00:00Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Select Option",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+              "var json = pm.response.json();",
+              "pm.test('Response has nodeId', () => pm.expect(json).to.have.property('nodeId'));",
+              "pm.test('Response has message', () => pm.expect(json).to.have.property('message'));",
+              "console.log('Navigated to node:', json.nodeId);",
+              "console.log('Message:', json.message.substring(0, 80));",
+              "json.options.forEach(o => console.log(' [' + o.index + ']', o.label));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"optionIndex\": 0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/sessions/{{sessionId}}/select",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "sessions", "{{sessionId}}", "select"]
+        },
+        "description": "Sends the user's button selection and advances the conversation.\n\nChange `optionIndex` to navigate:\n\n**Language select node:**\n- 0 → English\n- 1 → Português\n- 2 → Español\n\n**Main menu (after language selection):**\n- 0 → Campus Addresses\n- 1 → UDESC Systems Access\n- 2 → How to Get UDESC ID\n- 3 → Systems Description\n- 4 → CPF Information\n- 5 → Tutoring Team\n- 6 → SOE Services\n- 7 → Student Housing\n- 8 → Start Over / Change Language"
+      },
+      "response": [
+        {
+          "name": "Navigated to Main Menu (English)",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n    \"sessionId\": \"c9d8c798-8532-4dc8-bf17-b6fb3209175b\",\n    \"nodeId\": \"menu-main\",\n    \"message\": \"Main Menu — How can I help you today?\",\n    \"options\": [\n        { \"index\": 0, \"label\": \"🏛️ Campus Addresses\" },\n        { \"index\": 1, \"label\": \"💻 UDESC Systems Access\" },\n        { \"index\": 2, \"label\": \"🪪 How to Get Your UDESC ID\" },\n        { \"index\": 3, \"label\": \"🖥️ UDESC Systems Description\" },\n        { \"index\": 4, \"label\": \"📋 CPF Information\" },\n        { \"index\": 5, \"label\": \"🤝 Tutoring Team\" },\n        { \"index\": 6, \"label\": \"🧭 Student Orientation Service (SOE)\" },\n        { \"index\": 7, \"label\": \"🏠 Student Housing\" },\n        { \"index\": 8, \"label\": \"🔄 Start Over / Change Language\" }\n    ]\n}"
+        },
+        {
+          "name": "Invalid Option (400)",
+          "status": "Bad Request",
+          "code": 400,
+          "body": "{\n    \"error\": \"Invalid option index 99. Valid range: 0–2\",\n    \"timestamp\": \"2026-06-04T12:00:00Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Select Option — Invalid Index",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+              "pm.test('Error field present', () => pm.expect(pm.response.json()).to.have.property('error'));",
+              "pm.test('Timestamp field present', () => pm.expect(pm.response.json()).to.have.property('timestamp'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"optionIndex\": 99\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/sessions/{{sessionId}}/select",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "sessions", "{{sessionId}}", "select"]
+        },
+        "description": "Verifies the 400 error response when an out-of-range optionIndex is sent."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Session — Unknown ID (404)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 404', () => pm.response.to.have.status(404));",
+              "pm.test('Error field present', () => pm.expect(pm.response.json()).to.have.property('error'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/sessions/00000000-0000-0000-0000-000000000000",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "sessions", "00000000-0000-0000-0000-000000000000"]
+        },
+        "description": "Verifies the 404 error response for a non-existent session."
+      },
+      "response": []
+    }
+  ]
+}
