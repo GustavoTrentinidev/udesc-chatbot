@@ -27,6 +27,11 @@ management:
     health:
       show-details: always
 
+whatsapp:
+  phone-number-id: ${WHATSAPP_PHONE_NUMBER_ID:}
+  access-token: ${WHATSAPP_ACCESS_TOKEN:}
+  verify-token: ${WHATSAPP_VERIFY_TOKEN:}
+
 logging:
   level:
     br.udesc.chatbot: INFO

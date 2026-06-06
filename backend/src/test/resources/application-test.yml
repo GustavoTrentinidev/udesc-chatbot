@@ -13,3 +13,8 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+whatsapp:
+  phone-number-id: test-phone-id
+  access-token: test-access-token
+  verify-token: test-verify-token

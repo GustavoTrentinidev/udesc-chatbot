@@ -13,5 +13,9 @@ public class WebConfig implements WebMvcConfigurer {
             .allowedOrigins("*")
             .allowedMethods("GET", "POST", "OPTIONS")
             .allowedHeaders("*");
+        registry.addMapping("/webhook/**")
+            .allowedOrigins("*")
+            .allowedMethods("GET", "POST", "OPTIONS")
+            .allowedHeaders("*");
     }
 }
