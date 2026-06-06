@@ -1,4 +1,4 @@
-package br.udesc.chatbot.whatsapp;
+package br.udesc.chatbot.twilio;
 
 import org.springframework.stereotype.Component;
 

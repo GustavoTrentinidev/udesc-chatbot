@@ -3,7 +3,7 @@ package br.udesc.chatbot.twilio;
 import br.udesc.chatbot.api.dto.ChatStateResponse;
 import br.udesc.chatbot.api.exception.InvalidOptionException;
 import br.udesc.chatbot.service.ConversationService;
-import br.udesc.chatbot.whatsapp.MessageDeduplicator;
+import br.udesc.chatbot.twilio.MessageDeduplicator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
