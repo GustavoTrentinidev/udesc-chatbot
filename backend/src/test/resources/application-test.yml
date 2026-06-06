@@ -13,3 +13,8 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+twilio:
+  account-sid: test-account-sid
+  auth-token: test-auth-token
+  from-number: whatsapp:+14155238886
