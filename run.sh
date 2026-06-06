@@ -126,21 +126,12 @@ start_ngrok() {
         sleep 1
     fi
 
-    if [ -n "${NGROK_STATIC_URL:-}" ] && [ "$NGROK_STATIC_URL" != "your_ngrok_static_url" ]; then
-        nohup ngrok http --domain="$NGROK_STATIC_URL" 8080 > /tmp/ngrok.log 2>&1 &
-        info "ngrok tunnel: https://$NGROK_STATIC_URL"
-    else
-        nohup ngrok http 8080 > /tmp/ngrok.log 2>&1 &
-        sleep 2
-        local url
-        url=$(curl -s http://localhost:4040/api/tunnels 2>/dev/null \
-            | grep -oP 'https://[^"]+\.ngrok[^"]+' | head -1 || true)
-        if [ -n "$url" ]; then
-            info "ngrok tunnel: $url"
-        else
-            warn "ngrok started but could not detect URL — check http://localhost:4040"
-        fi
+    if [ -z "${NGROK_DEV_DOMAIN:-}" ] || [ "$NGROK_DEV_DOMAIN" = "your_ngrok_dev_domain" ]; then
+        error "NGROK_DEV_DOMAIN não configurado no .env — acesse ngrok.com > Dashboard > Domains e adicione o seu domínio fixo."
     fi
+
+    nohup ngrok http --domain="$NGROK_DEV_DOMAIN" 8080 > /tmp/ngrok.log 2>&1 &
+    info "ngrok tunnel: https://$NGROK_DEV_DOMAIN"
 
     warn "Update the webhook URL in Twilio console if the URL changed:"
     echo "       Twilio > Messaging > Sandbox Settings > WHEN A MESSAGE COMES IN"
