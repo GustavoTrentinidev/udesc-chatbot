@@ -1,3 +1,7 @@
+# Local tooling
+.claude/
+openspec/
+
 # Environment
 .env
 
