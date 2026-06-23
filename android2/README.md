@@ -1,1 +1,10 @@
-Para executar o projeto, basta executar o script run.sh na raiz do projeto e abrir e emular o projeto android2/ na IDE android studio.
+## Passo a passo para execução:
+
+1. Clone o repositório
+2. Execute os comandos:
+```
+ git checkout MOBILE
+ ./run.sh
+```
+3. Importe o módulo android2/ na IDE Android Studio.
+4. Execute e emule o módulo em um dispositivo virtual. 
