@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@color/udesc_blue">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UDESC"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="International Student Assistant"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="48dp" />
+
+    <Button
+        android:id="@+id/btnMainSite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="UDESC Main Site"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/udesc_blue"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnStudentPortal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Portal (Portal do Aluno)"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/udesc_blue"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnInternational"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="International Office (Mobilidade Internacional)"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/udesc_blue"
+        android:layout_marginBottom="48dp" />
+
+    <Button
+        android:id="@+id/btnStartConversation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Conversation"
+        android:textSize="18sp"
+        android:backgroundTint="@color/udesc_green"
+        android:textColor="@color/white"
+        android:padding="16dp" />
+
+</LinearLayout>
